@@ -1,0 +1,392 @@
+/* 🌿 RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 🌿 BODY */
+body {
+  font-family: Arial, sans-serif;
+  background: #fdfdfd;
+  color: #00263d;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  animation: fadeIn 0.8s ease-in forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* 🌿 MAIN */
+main {
+  flex: 1;
+  margin-top: 60px;
+  /* مساحة للـ navbar */
+  padding: 15px;
+}
+
+/* 🌿 NAVBAR */
+.navbar {
+  height: 55px;
+  background: #ffffff;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.navbar img {
+  height: 35px;
+  object-fit: contain;
+}
+
+.menu-btn {
+  font-size: 26px;
+  cursor: pointer;
+  color: #00263d;
+  font-weight: bold;
+}
+
+/* 🌿 SIDEBAR */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 230px;
+  height: 100%;
+  background: #00263d;
+  transition: left 0.3s ease;
+  padding: 70px 20px;
+  z-index: 5000;
+}
+
+.sidebar.active {
+  left: 0;
+}
+
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar ul li {
+  margin: 15px 0;
+}
+
+.sidebar ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+/* 🌿 FOOTER */
+.app-footer {
+  position: fixed;
+  bottom: -5px;
+  left: 0;
+  right: 0;
+  height: 65px;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  border-top: 1px solid transparent;
+}
+
+.app-footer .home-btn {
+  background-color: #00263d;
+  width: 90%;
+  height: 45px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.app-footer .home-icon {
+  font-size: 28px;
+  color: #fff;
+}
+
+/* 🌿 BUTTONS */
+.btn-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10%;
+  margin: 70px auto 20px;
+  width: 95%;
+  margin-top: 60%;
+}
+
+.btn {
+  display: block;
+  background: #00263d;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  padding: 18px 0;
+  transition: background 0.3s;
+}
+
+.btn:hover {
+  background: #01416a;
+}
+
+/* 🌿 LOGIN BOX */
+.login-box {
+  background: #00263d;
+  padding: 25px;
+  border-radius: 10px;
+  text-align: center;
+  width: 85%;
+  margin: 25% auto 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  animation: fadeIn 1.2s ease-in forwards;
+}
+
+.login-box input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+}
+
+.login-box button {
+  width: 100%;
+  padding: 10px;
+  background: #8e6c2b;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.login-box button:hover {
+  background: #a77c36;
+}
+
+.error {
+  color: #ff4d4d;
+  margin-top: 8px;
+  display: none;
+}
+
+/* 🌿 LOGO */
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.logo img {
+  max-width: 75%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* 🌿 TABLE (Home & Permits) */
+table {
+  margin: 10px auto;
+  border-collapse: collapse;
+  width: 95%;
+  max-width: 900px;
+  background: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  font-weight: bold;
+  text-align: center;
+  direction: rtl;
+  padding-bottom: 40px;
+}
+
+th,
+td {
+  padding: 10px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+th {
+  background: #f2f2f2;
+}
+
+tr:nth-child(even) {
+  background: #fafafa;
+}
+
+.permits-table-container {
+  overflow-x: auto;
+  padding-bottom: 90px;
+}
+
+table.permits-table th,
+table.permits-table td {
+  color: #000;
+  background-color: #fff;
+  border: 1px solid #ccc;
+}
+
+table.permits-table th {
+  background: #f9f9f9;
+  position: sticky;
+  top: 0;
+}
+
+table.permits-table tr.expired td {
+  background: #ffe0e0;
+}
+
+/* 🌿 CARDS */
+#cards-container {
+  padding-bottom: 80px;
+}
+
+.card {
+  background: #f9f9e7;
+  width: 95%;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  margin: 10px auto;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+}
+
+.unit-number {
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+  color: #000;
+}
+
+.description {
+  margin-top: 8px;
+  font-size: 16px;
+  color: #000;
+  line-height: 1.5;
+  text-align: right;
+  font-weight: bold;
+}
+
+/* 🌿 INPUTS & SELECTS */
+input,
+select {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  text-align: center;
+  width: 180px;
+}
+
+/* 🌿 TABS */
+.tabs {
+  position: fixed;
+  bottom: 55px;
+  left: 0;
+  width: 90%;
+  display: flex;
+  background: #00263d;
+  border-radius: 10px;
+  margin: 0 auto;
+  right: 0;
+  height: 40px;
+  z-index: 1000;
+  transition: transform 0.4s ease;
+}
+
+
+
+.tab {
+  flex: 1;
+  text-align: center;
+  padding: 12px 0;
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  transition: background 0.3s;
+}
+
+.tab:hover {
+  background: #01416a;
+}
+
+.tab:active {
+  background: #025985;
+}
+
+/* 🌿 RESPONSIVE (Tablet & Up) */
+@media (min-width: 768px) {
+  .btn-container {
+    grid-template-columns: repeat(2, 1fr);
+    width: 80%;
+  }
+
+  .login-box {
+    width: 50%;
+    margin-top: 8%;
+  }
+
+  table {
+    width: 80%;
+    font-size: 15px;
+    padding-bottom: 80px;
+  }
+
+  th,
+  td {
+    padding: 12px;
+  }
+}
+ .box {
+    background: rgba(255,255,255,0.1);
+    padding: 20px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+  }
+  select, input[type=file], button {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+  }
+  button {
+    background: #16a085;
+    color: white;
+    cursor: pointer;
+  }
+  button:hover { background: #1abc9c; }

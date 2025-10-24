@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>بحث الملاك</title>
+ <link rel="stylesheet" href="css/search.css">
+</head>
+<body>
+  
+
+  <h2>🔍 بحث عن مالك الوحدة</h2>
+
+  <div class="btn-container">
+    <button onclick="selectSheet('V')">V</button>
+    <button onclick="selectSheet('TV')">TV</button>
+    <button onclick="selectSheet('IS')">IS</button>
+    <button onclick="selectSheet('CH')">CH</button>
+  </div>
+
+  <div id="inputSection">
+    <input type="text" id="unitInput" placeholder="اكتب رقم الوحدة">
+    <div id="tvOption">
+      <label>اختر نوع الوحدة:</label>
+      <select id="tvLetter">
+        <option value="A">A</option>
+        <option value="B">B</option>
+      </select>
+    </div>
+    <br><br>
+    <button onclick="search()">بحث</button>
+  </div>
+
+  <div id="result"></div>
+  <!-- Footer -->
+    <div class="app-footer">
+      <a href="index.html" class="home-btn">
+        <span class="home-icon">🏚️</span>
+      </a>
+    </div>
+
+  <script>
+    const scriptURL = "https://script.google.com/macros/s/AKfycbw5ONye_ORDwlTqvE2ONCepxk-kGJEYLyf-3vNGtzmMlb-Qyt5BowhN9XLNIE8tj76IeA/exec";
+    let selectedSheet = "";
+
+    function selectSheet(sheet) {
+      selectedSheet = sheet;
+      document.getElementById("inputSection").style.display = "block";
+      document.getElementById("result").textContent = "";
+
+      const input = document.getElementById("unitInput");
+      const tvOption = document.getElementById("tvOption");
+
+      input.value = "";
+      tvOption.style.display = "none";
+
+      // إعداد الإدخال حسب نوع الصفحة
+      if (sheet === "CH") {
+        input.placeholder = "اكتب رقم مزدوج (مثلاً 11-21)";
+        input.pattern = "[0-9]+-[0-9]+"; // يقبل أرقام فيها شرطة
+      } else {
+        input.placeholder = "اكتب رقم الوحدة";
+        input.pattern = "[0-9]+"; // أرقام عادية فقط
+      }
+
+      // لو اختار TV نعرض اختيار A/B
+      if (sheet === "TV") {
+        tvOption.style.display = "block";
+      }
+    }
+
+    async function search() {
+      const unitNumber = document.getElementById("unitInput").value.trim();
+      const tvLetter = document.getElementById("tvLetter").value;
+      const resultDiv = document.getElementById("result");
+
+      if (!selectedSheet || !unitNumber) {
+        resultDiv.textContent = "⚠️ برجاء اختيار نوع الصفحة وكتابة رقم الوحدة";
+        return;
+      }
+
+      let fullUnit;
+      if (selectedSheet === "TV") {
+        fullUnit = `MZ-TV-${unitNumber}-${tvLetter}`;
+      } else {
+        fullUnit = `MZ-${selectedSheet}-${unitNumber}`;
+      }
+
+      try {
+        const response = await fetch(`${scriptURL}?sheet=${selectedSheet}&unit=${encodeURIComponent(fullUnit)}`);
+        const text = await response.text();
+        resultDiv.textContent = text;
+      } catch (err) {
+        resultDiv.textContent = "❌ حدث خطأ أثناء الاتصال";
+      }
+    }
+  </script>
+
+</body>
+</html>

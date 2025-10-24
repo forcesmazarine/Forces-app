@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <!-- داخل <head> -->
+  <link rel="stylesheet" href="css/desktop.css" media="only screen and (min-width: 769px)">
+  <link rel="stylesheet" href="css/mobile.css" media="only screen and (max-width: 768px)">
+  <title>Security Report PDF</title>
+</head>
+
+<body>
+  <div class="report-container" id="report">
+    <div class="header">
+      <div class="logo2"><img src="imgs/logo2.JPG" alt="Logo"></div>
+      <div class="Logo"><img src="imgs/logo.jpg" alt="Logo"></div>
+    </div>
+
+    <div class="desc">
+      <label>السيد العميد / مدير امن سيتى ايدج</label><br>
+      <label>تحية طيبة وبعد ...</label><br>
+      <div id="description1" class="text-box" contenteditable="true"></div>
+      <div class="sign">
+        <div class="title">مدير الموقع</div>
+        <div class="name">مقدم / محمود نادر</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="memoNameContainer" style="text-align:center; margin-top:20px;">
+    <label style="display:block; margin-bottom:8px; font-weight:bold;">اسم المذكرة:</label>
+    <input type="text" id="memoName" placeholder="اكتب اسم المذكرة هنا..."
+      style="padding:8px; width:80%; border-radius:8px; border:1px solid #888; font-size:16px; text-align:center;">
+  </div>
+
+  <div class="actions no-print">
+    <label for="images" class="custom-file-upload">📎 Attach Images</label>
+    <input type="file" id="images" multiple accept="image/*">
+    <button id="generateBtn" onclick="generatePDF()">📄 Generate PDF</button>
+  </div>
+
+  <div class="app-footer">
+    <a href="index.html" class="home-btn">
+      <span class="home-icon">🏚️</span>
+    </a>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="js/report.js"></script>
+</body>
+
+</html>

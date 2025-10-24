@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>City Edge Developments</title>
+  <link rel="stylesheet" href="CSS/style.css">
+
+</head>
+
+<body>
+  <!-- Navbar -->
+  <div class="navbar">
+    <!-- <span class="menu-btn" onclick="toggleSidebar()"><B>☰</B></span> -->
+    <img src="imgs/logo.jpg" alt="nav-logo">
+    <h2>Forces Plus - Mazarine</h2>
+  </div>
+  <div class="box">
+    <h2>📸 رفع صورة اليومية - قطاع ISLAND</h2>
+
+    <select id="point">
+      <option value="">اختر النقطة</option>
+      <option value="البوابة">البوابة</option>
+      <option value="غرب">غرب</option>
+      <option value="شرق">شرق</option>
+      <option value="وسط">وسط</option>
+      <option value="كبرى7">كبرى7</option>
+    </select>
+
+    <input type="file" id="file" accept="image/*">
+    <button onclick="uploadImage()">رفع الصورة</button>
+
+    <p id="status" style="margin-top:10px; font-weight:bold;"></p>
+  </div>
+
+  <script>
+    const API_URL = "https://script.google.com/macros/s/AKfycbwo1jrhmFNFyrMCONeXI4s2Hqc3VKSelWBkMFa1niP0e4SGwu3xw1tZOEQDFcgaJWYt/exec";
+const SECTOR = "ISLAND";
+
+async function uploadImage() {
+  const point = document.getElementById("point").value.trim();
+  const fileInput = document.getElementById("file");
+  const status = document.getElementById("status");
+
+  if (!point) return status.textContent = "⚠️ اختر النقطة أولاً";
+  if (!fileInput.files.length) return status.textContent = "⚠️ اختر صورة";
+
+  const file = fileInput.files[0];
+  status.textContent = "⏳ جارٍ رفع الصورة...";
+
+  const reader = new FileReader();
+  reader.onload = async (e) => {
+    const base64Data = e.target.result.split(",")[1];
+    const now = new Date();
+    const timestamp = now.toISOString().slice(0, 19).replace("T", "_").replace(/:/g, "-");
+    const newFileName = `${SECTOR}_${point}_${timestamp}.jpg`;
+
+    const body = JSON.stringify({
+      sectorName: SECTOR,
+      pointName: point,
+      fileName: newFileName,
+      fileData: base64Data
+    });
+
+    try {
+      await fetch(API_URL, {
+        method: "POST",
+        mode: "no-cors", // ✅ الحل السحري
+        headers: { "Content-Type": "application/json" },
+        body
+      });
+
+      status.textContent = "✅ تم رفع الصورة بنجاح";
+      fileInput.value = "";
+    } catch (err) {
+      console.error(err);
+      status.textContent = "❌ فشل الاتصال بالسيرفر";
+    }
+  };
+
+  reader.readAsDataURL(file);
+}
+
+  </script>
+</body>
+
+</html>
