@@ -1,120 +1,130 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>تحديد الوحدات المفروشة</title>
-  <style>
-    body {
-      background: #111;
-      color: #fff;
-      font-family: "Cairo", sans-serif;
-      text-align: center;
-      padding: 20px;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>تحديد الوحدات المفروشة</title>
+    <style>
+        body {
+            background: #111;
+            color: #fff;
+            font-family: "Cairo", sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
 
-    h1 {
-      margin-bottom: 20px;
-    }
+        h1 {
+            margin-bottom: 20px;
+        }
 
-    .unit-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-      gap: 10px;
-      margin-top: 20px;
-      direction: rtl;
-    }
+        .unit-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 10px;
+            margin-top: 20px;
+            direction: rtl;
+        }
 
-    .unit-item {
-      position: relative;
-    }
+        .unit-item {
+            position: relative;
+        }
 
-    input[type="checkbox"] {
-      display: none;
-    }
+        input[type="checkbox"] {
+            display: none;
+        }
 
-    label {
-      background: #222;
-      border-radius: 10px;
-      padding: 12px;
-      cursor: pointer;
-      display: block;
-      transition: 0.3s;
-    }
+        label {
+            background: #222;
+            border-radius: 10px;
+            padding: 12px;
+            cursor: pointer;
+            display: block;
+            transition: 0.3s;
+        }
 
-    input:checked + label {
-      background: #00b894;
-      color: #fff;
-      box-shadow: 0 0 10px #00b894;
-    }
+        input:checked+label {
+            background: #00b894;
+            color: #fff;
+            box-shadow: 0 0 10px #00b894;
+        }
 
-    button {
-      margin-top: 25px;
-      padding: 12px 30px;
-      background: #00b894;
-      border: none;
-      border-radius: 10px;
-      color: white;
-      cursor: pointer;
-      font-size: 18px;
-      transition: 0.3s;
-    }
+        button {
+            margin-top: 25px;
+            padding: 12px 30px;
+            background: #00b894;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            cursor: pointer;
+            font-size: 18px;
+            transition: 0.3s;
+        }
 
-    button:hover {
-      background: #019870;
-    }
-  </style>
+        button:hover {
+            background: #019870;
+        }
+    </style>
 </head>
+
 <body>
-  <h1>تحديد الوحدات المفروشة</h1>
+    <h1>تحديد الوحدات المفروشة</h1>
 
-  <div class="unit-list" id="unitList"></div>
+    <div class="unit-list" id="unitList"></div>
 
-  <button onclick="submitData()">💾 حفظ البيانات</button>
+    <button onclick="submitData()">💾 حفظ البيانات</button>
 
-  <script>
-    // 🔗 رابط Google Apps Script
-    const sheetURL = "https://script.google.com/macros/s/AKfycbzNkBv_q_c5CnHud5EEePlUotjR2BPV_etR2B5CeTJXYDVDakYp_L-YrryJMQ_1NDwkBA/exec";
+    <script>
+        // 🔗 رابط Google Apps Script
+        const sheetURL = "https://script.google.com/macros/s/AKfycbwB3OslEJI4aCDT8k8enPFhqERvEUUy3XShIin1PxbSNMIM-mwj--ViJZBXwHjuKpZZzA/exec";
 
-    // 🔹 إنشاء 98 وحدة تلقائيًا
-    const container = document.getElementById("unitList");
-    for (let i = 1; i <= 98; i++) {
-      const wrapper = document.createElement("div");
-      wrapper.className = "unit-item";
+        // 🔹 إنشاء 98 وحدة تلقائيًا
+        const container = document.getElementById("unitList");
+        for (let i = 1; i <= 98; i++) {
+            const wrapper = document.createElement("div");
+            wrapper.className = "unit-item";
 
-      const checkbox = document.createElement("input");
-      checkbox.type = "checkbox";
-      checkbox.id = "unit" + i;
-      checkbox.value = i;
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.id = "unit" + i;
+            checkbox.value = i;
 
-      const label = document.createElement("label");
-      label.setAttribute("for", "unit" + i);
-      label.textContent = "V-" + i;
+            const label = document.createElement("label");
+            label.setAttribute("for", "unit" + i);
+            label.textContent = "V-" + i;
 
-      wrapper.appendChild(checkbox);
-      wrapper.appendChild(label);
-      container.appendChild(wrapper);
-    }
+            wrapper.appendChild(checkbox);
+            wrapper.appendChild(label);
+            container.appendChild(wrapper);
+        }
+        function doOptions(e) {
+            return ContentService.createTextOutput("")
+                .setMimeType(ContentService.MimeType.JSON)
+                .setHeader("Access-Control-Allow-Origin", "*")
+                .setHeader("Access-Control-Allow-Methods", "POST, OPTIONS")
+                .setHeader("Access-Control-Allow-Headers", "Content-Type");
+        }
 
-    // 🔹 إرسال البيانات إلى Google Sheet
-    async function submitData() {
-      const selected = [...document.querySelectorAll("input:checked")].map(i => i.value);
+        // 🔹 إرسال البيانات إلى Google Sheet
+        async function submitData() {
+            const selected = [...document.querySelectorAll("input:checked")].map(i => i.value);
 
-      try {
-        const response = await fetch(sheetURL, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ furnishedUnits: selected })
-        });
+            try {
+                const response = await fetch(sheetURL, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ furnishedUnits: selected })
+                });
 
-        const result = await response.text();
-        console.log("Response:", result);
-        alert("تم حفظ البيانات بنجاح ✅");
-      } catch (error) {
-        console.error("حدث خطأ:", error);
-        alert("حدث خطأ أثناء الحفظ ❌");
-      }
-    }
-  </script>
+                const result = await response.text();
+                console.log("Response:", result);
+                alert("تم حفظ البيانات بنجاح ✅");
+            } catch (error) {
+                console.error("حدث خطأ:", error);
+                alert("حدث خطأ أثناء الحفظ ❌");
+            }
+        }
+    </script>
 </body>
+
 </html>
