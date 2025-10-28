@@ -67,47 +67,48 @@
     </style>
 </head>
 
-<body>
-    <h1>تحديد الوحدات المفروشة</h1>
+<body dir="rtl">
+  <h1>تحديد الوحدات المفروشة</h1>
+  <div id="units-container" class="units-grid"></div>
+  <button onclick="submitData()">💾 حفظ البيانات</button>
 
-    <div class="unit-list" id="unitList"></div>
 
-    <button onclick="submitData()">💾 حفظ البيانات</button>
 
     <script>
-        // 🔗 رابط Google Apps Script
-        const sheetURL = "https://script.google.com/macros/s/AKfycbw0PbyVs7zErS9LVPX_fIcwMVsYoXLWPNOAqFj0GYTccYtZyHX9lgKYgoSozseICYnXMQ/exec";
+        // رابط Google Apps Script
+        const sheetURL = "https://script.google.com/macros/s/AKfycbxd02oM4G_e8gcLCSXD0YxVcqAXmO57gf0SIDaH31YfLGPZKXivtuRZIfo0Y-h9om2Wnw/exec";
 
-        // 🔹 إنشاء 98 وحدة تلقائيًا
-        const container = document.getElementById("unitList");
-        for (let i = 1; i <= 98; i++) {
-            const wrapper = document.createElement("div");
-            wrapper.className = "unit-item";
+        // إنشاء الوحدات من V-1 إلى V-98
+        function generateUnits() {
+            const container = document.getElementById("units-container");
+            container.innerHTML = "";
+            for (let i = 1; i <= 98; i++) {
+                const unitId = `V-${i}`;
+                const wrapper = document.createElement("div");
+                wrapper.className = "unit-box";
 
-            const checkbox = document.createElement("input");
-            checkbox.type = "checkbox";
-            checkbox.id = "unit" + i;
-            checkbox.value = i;
+                const checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                checkbox.id = unitId;
+                checkbox.value = unitId;
 
-            const label = document.createElement("label");
-            label.setAttribute("for", "unit" + i);
-            label.textContent = "V-" + i;
+                const label = document.createElement("label");
+                label.setAttribute("for", unitId);
+                label.textContent = unitId;
 
-            wrapper.appendChild(checkbox);
-            wrapper.appendChild(label);
-            container.appendChild(wrapper);
-        }
-        function doOptions(e) {
-            return ContentService.createTextOutput("")
-                .setMimeType(ContentService.MimeType.JSON)
-                .setHeader("Access-Control-Allow-Origin", "*")
-                .setHeader("Access-Control-Allow-Methods", "POST, OPTIONS")
-                .setHeader("Access-Control-Allow-Headers", "Content-Type");
+                wrapper.appendChild(checkbox);
+                wrapper.appendChild(label);
+                container.appendChild(wrapper);
+            }
         }
 
-        // 🔹 إرسال البيانات إلى Google Sheet
+        // إرسال البيانات للمشرف والشيت
         async function submitData() {
-            const selected = [...document.querySelectorAll("input:checked")].map(i => i.value);
+            const selected = [...document.querySelectorAll("input[type=checkbox]:checked")].map(cb => cb.value);
+            if (selected.length === 0) {
+                alert("⚠️ يرجى اختيار وحدة واحدة على الأقل");
+                return;
+            }
 
             try {
                 const response = await fetch(sheetURL, {
@@ -116,15 +117,21 @@
                     body: JSON.stringify({ furnishedUnits: selected })
                 });
 
-                const result = await response.text();
-                console.log("Response:", result);
-                alert("تم حفظ البيانات بنجاح ✅");
+                const result = await response.json();
+                console.log("Result:", result);
+                alert(result.message || "✅ تم حفظ البيانات بنجاح!");
             } catch (error) {
-                console.error("حدث خطأ:", error);
-                alert("حدث خطأ أثناء الحفظ ❌");
+                console.error("Error while submitting:", error);
+                alert("❌ حدث خطأ أثناء الحفظ، حاول مرة أخرى.");
             }
         }
+
+        // عندما يتم تحميل الصفحة
+        document.addEventListener("DOMContentLoaded", () => {
+            generateUnits();
+        });
     </script>
+
 </body>
 
 </html>

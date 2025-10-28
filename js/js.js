@@ -36,17 +36,31 @@ function login() {
     }
 }
 let lastScrollY = window.scrollY;
-  const tabs = document.querySelector('.tabs');
+const tabs = document.querySelector('.tabs');
 
-  window.addEventListener('scroll', () => {
+window.addEventListener('scroll', () => {
     if (window.scrollY > lastScrollY) {
-      // نازل لتحت → اخفي التابات
-      tabs.classList.add('hidden');
+        // نازل لتحت → اخفي التابات
+        tabs.classList.add('hidden');
     } else {
-      // طالع لفوق → أظهر التابات
-      tabs.classList.remove('hidden');
+        // طالع لفوق → أظهر التابات
+        tabs.classList.remove('hidden');
     }
     lastScrollY = window.scrollY;
-  });
+});
 
-  
+
+const openPopup = document.getElementById("openPopup");
+const closePopup = document.getElementById("closePopup");
+const popup = document.getElementById("popupMenu");
+const overlay = document.getElementById("overlay");
+
+openPopup.addEventListener("click", () => {
+  popup.classList.add("active");
+  overlay.classList.add("active");
+});
+
+closePopup.addEventListener("click", () => {
+  popup.classList.remove("active");
+  overlay.classList.remove("active");
+});
