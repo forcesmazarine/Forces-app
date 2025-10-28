@@ -16,25 +16,31 @@ if (tabs) {
 }
 
 // 🔹 التحكم فى المربع الحواري (Popup)
-const openPopup = document.getElementById("openPopup");
-const closePopup = document.getElementById("closePopup");
-const popup = document.getElementById("popupMenu");
-const overlay = document.getElementById("overlay");
+function setupPopup(openId, closeId, popupId, overlayId) {
+  const openBtn = document.getElementById(openId);
+  const closeBtn = document.getElementById(closeId);
+  const popup = document.getElementById(popupId);
+  const overlay = document.getElementById(overlayId);
 
-// تأكد إن العناصر موجودة قبل إضافة الأحداث
-if (openPopup && closePopup && popup && overlay) {
-  openPopup.addEventListener("click", () => {
+  openBtn.addEventListener("click", () => {
     popup.classList.add("active");
     overlay.classList.add("active");
   });
 
-  closePopup.addEventListener("click", () => {
+  closeBtn.addEventListener("click", () => {
+    popup.classList.remove("active");
+    overlay.classList.remove("active");
+  });
+
+  overlay.addEventListener("click", () => {
     popup.classList.remove("active");
     overlay.classList.remove("active");
   });
 }
 
-// 🔹 دالة الانتقال للصفحات
-function goToPage(url) {
-  window.location.href = url;
+setupPopup("openPopup1", "closePopup1", "popup1", "overlay1");
+setupPopup("openPopup2", "closePopup2", "popup2", "overlay2");
+
+function goToPage(page) {
+  window.location.href = page;
 }
