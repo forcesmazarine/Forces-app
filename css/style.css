@@ -375,8 +375,7 @@ height: 50%;
 }
 
 select,
-input[type=file],
-button {
+input[type=file]{
   width: 100%;
   margin-top: 10px;
   padding: 10px;
@@ -385,15 +384,20 @@ button {
   font-size: 16px;
 }
 
+
 button {
-  background: #16a085;
+   background: #1abc9c;
   color: white;
   cursor: pointer;
+  width: 100%;
+  margin-top: 60px;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
 }
 
-button:hover {
-  background: #1abc9c;
-}
+
 
 
 .main-btn {
@@ -405,6 +409,7 @@ button:hover {
   border-radius: 10px;
   cursor: pointer;
   transition: 0.3s;
+  MARGIN-TOP: 10PX;
 }
 
 .main-btn:hover {
@@ -445,6 +450,7 @@ button:hover {
   display: flex;
   flex-direction: column;
   gap: 10px;
+
 }
 
 .popup-buttons button {
@@ -456,7 +462,7 @@ button:hover {
   border-radius: 8px;
   cursor: pointer;
   transition: 0.3s;
-}
+  MARGIN-TOP: 5PX;}
 
 .popup-buttons button:hover {
   background: #555;
