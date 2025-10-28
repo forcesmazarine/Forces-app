@@ -142,49 +142,6 @@ main {
   background: #01416a;
 }
 
-/* 🌿 LOGIN BOX */
-.login-box {
-  background: #00263d;
-  padding: 25px;
-  border-radius: 10px;
-  text-align: center;
-  width: 85%;
-  margin: 25% auto 0;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  color: #fff;
-  animation: fadeIn 1.2s ease-in forwards;
-}
-
-.login-box input {
-  width: 100%;
-  padding: 10px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 6px;
-  font-size: 15px;
-}
-
-.login-box button {
-  width: 100%;
-  padding: 10px;
-  background: #8e6c2b;
-  border: none;
-  border-radius: 6px;
-  color: #fff;
-  font-size: 16px;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-.login-box button:hover {
-  background: #a77c36;
-}
-
-.error {
-  color: #ff4d4d;
-  margin-top: 8px;
-  display: none;
-}
 
 /* 🌿 LOGO */
 .logo {
@@ -287,16 +244,6 @@ table.permits-table tr.expired td {
   font-weight: bold;
 }
 
-/* 🌿 INPUTS & SELECTS */
-input,
-select {
-  padding: 10px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  font-size: 16px;
-  text-align: center;
-  width: 180px;
-}
 
 /* 🌿 TABS */
 .tabs {
@@ -363,7 +310,7 @@ select {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-height: 50%;
+height: 35%;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(8px);
   padding: 20px;
@@ -375,15 +322,34 @@ height: 50%;
 }
 
 select,
-input[type=file]{
+input[type=file] {
   width: 100%;
-  margin-top: 10px;
   padding: 10px;
-  border: none;
-  border-radius: 10px;
-  font-size: 16px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+  background: #fff;
+  color: #00263d;
+  text-align: center;
+  outline: none;
 }
 
+/* عند التركيز */
+select:focus,
+input[type=file]:focus {
+  border-color: #007bff;
+}
+
+/* زر رفع الملف */
+input[type=file]::file-selector-button {
+  background: #00263d;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
 
 button {
    background: #1abc9c;
