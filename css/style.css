@@ -399,7 +399,7 @@ button {
   visibility: hidden;
   transition: 0.3s ease;
   width: 75%;
-  height: 45%;
+  height: 35%;
 }
 
 .popup.active {
