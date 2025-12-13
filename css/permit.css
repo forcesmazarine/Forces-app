@@ -1,0 +1,68 @@
+
+body{
+    padding-bottom: 60px;
+}
+.permits-table-container {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+}
+
+.permits-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 100%;
+    text-align: center;
+    font-weight: 200;
+}
+
+.permits-table th,
+.permits-table td {
+    padding: 12px;
+    font-size: 13px;
+    border-bottom: 1px solid #000000;
+    white-space: nowrap;
+}
+
+.permits-table th {
+    background-color: #000000;
+    font-weight: 600;
+}
+
+.permits-table tbody tr.expired {
+    background-color: #fee2e2; /* لون أحمر فاتح */
+    color: #991b1b;           /* نص أحمر غامق */
+}
+
+/* 🌿 FOOTER */
+.app-footer {
+  position: fixed;
+  bottom: -5px;
+  left: 0;
+  right: 0;
+  height: 65px;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 900;
+  border-top: 1px solid transparent;
+}
+
+.app-footer .home-btn {
+  background-color: #00263d;
+  width: 90%;
+  height: 45px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.app-footer .home-icon {
+  font-size: 28px;
+  color: #fff;
+}
