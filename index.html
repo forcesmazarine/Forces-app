@@ -36,12 +36,52 @@
   <hr class="separator">
 
   <h2 class="pro-title">أسماء الملاك</h2>
-  <div class="btn-container">
-    <button onclick="window.location.href=''">TWIN VILLA</button>
-    <button onclick="window.location.href=''">VILLA</button>
-    <button onclick="window.location.href=''">CHALET</button>
-    <button onclick="window.location.href=''">ISLAND</button>
+  <div class="owner-grid">
+    <button id="twin" data-type="twin">TWIN VILLA</button>
+    <button id="villa" data-type="villa">VILLA</button>
+    <button id="chalet" data-type="chalet">CHALET</button>
+    <button id="island" data-type="island">ISLAND</button>
   </div>
+
+  <div id="popup" class="popup hidden">
+    <div class="popup-content">
+      <span class="close" onclick="closePopup()">×</span>
+
+      <h3 id="popupTitle"></h3>
+
+      <!-- فيلا / ايلاند -->
+      <div id="simpleInput" class="input-group hidden">
+        <label>رقم الوحدة</label>
+        <input type="number" id="simpleUnit">
+      </div>
+
+      <!-- توين فيلا -->
+      <div id="twinInput" class="input-group hidden">
+        <label>رقم الوحدة</label>
+        <input type="number" id="twinUnit">
+
+        <div class="option-buttons">
+          <button onclick="setTwinSide('A')">A</button>
+          <button onclick="setTwinSide('B')">B</button>
+        </div>
+
+        <p id="twinSelected"></p>
+      </div>
+
+      <!-- شاليه -->
+      <div id="chaletInput" class="input-group hidden">
+        <label>رقم الشاليه</label>
+        <input type="number" id="chaletBuilding">
+
+        <label>رقم الشقة</label>
+        <input type="number" id="chaletApartment">
+      </div>
+
+      <button onclick="searchUnit()">بحث</button>
+      <p id="result"></p>
+    </div>
+  </div>
+
   <hr class="separator">
 
 
@@ -55,7 +95,9 @@
     </a>
   </div>
 
-  <script src="js/js.js"></script>
+  <script src="js/pop-up.js"></script>
+
+
 </body>
 
 </html>

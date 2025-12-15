@@ -112,3 +112,55 @@ body {
   transition: background 0.3s, transform 0.2s;
 }
 
+/* owner-gri */
+
+.owner-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  width: 90%;
+  max-width: 400px;
+  margin: 0 auto 25px;
+  margin-top: 15px;
+}
+
+.owner-grid button {
+  background: #00263d;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 15px 0;
+  font-size:16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+/* pop-up */
+
+.popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hidden {
+  display: none;
+}
+
+.popup-content {
+  background: #fff;
+  padding: 20px;
+  width: 300px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.close {
+  float: right;
+  cursor: pointer;
+  font-size: 20px;
+}
