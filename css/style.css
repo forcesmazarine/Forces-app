@@ -172,6 +172,7 @@ body {
   width: 32%;
   height: 30px;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 .search-btn {
@@ -191,6 +192,7 @@ body {
    width: 32%;
   height: 33px;
   margin-bottom: 20px;
+  text-align: center;
 
 }
 .twin-option{
@@ -204,6 +206,7 @@ body {
 #chaletBuilding{
    width: 32%;
   height: 33px;
+  text-align: center;
 
 }
 
@@ -211,5 +214,6 @@ body {
    width: 32%;
   height: 33px;
   margin-bottom: 20px;
+  text-align: center;
 
 }
