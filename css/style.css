@@ -173,3 +173,12 @@ body {
   height: 30px;
   margin-bottom: 20px;
 }
+
+.search-btn {
+  width: 33%;
+  height: 33px;
+  background-color: #00263d;
+  color: white;
+  border-radius: 10px;
+
+}
