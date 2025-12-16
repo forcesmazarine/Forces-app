@@ -182,3 +182,7 @@ body {
   border-radius: 10px;
 
 }
+#result{
+  font-size: 18px;
+  font-weight: 600;
+}
