@@ -64,11 +64,11 @@
          <label>رقم الوحدة</label>
 
         <div class="option-buttons">
-          <button onclick="setTwinSide('A')">A</button>
-          <button onclick="setTwinSide('B')">B</button>
+          <button class="twin-option" onclick="setTwinSide('A')">A</button>
+          <button class="twin-option" onclick="setTwinSide('B')">B</button>
         </div>
 
-        <p id="twinSelected"></p>
+        <p id="twinSelected" dir="rtl"></p>
       </div>
 
       <!-- شاليه -->
@@ -77,7 +77,7 @@
         <input type="number" id="chaletBuilding">
         <label>رقم الشاليه</label>
 
-        
+          <hr class="separator">
         <input type="number" id="chaletApartment">
         <label>رقم الشقة</label>
       </div>
