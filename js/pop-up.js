@@ -82,7 +82,7 @@ function searchUnit() {
       alert("ادخل رقم الشاليه والشقة");
       return;
     }
-    unitNumber = `${building}-${apartment}`;
+    unitNumber = `mz-ch-${building}-${apartment}`;
   }
 
   const unit = unitsData.find(u => u.unitNumber === unitNumber);
