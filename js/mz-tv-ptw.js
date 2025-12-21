@@ -30,4 +30,4 @@ async function loadData() {
 }
 
 loadData();
-setInterval(loadData, 2500); 
+setInterval(loadData,60000); 
