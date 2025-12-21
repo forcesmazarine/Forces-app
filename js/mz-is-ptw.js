@@ -39,4 +39,4 @@
     }
 
     loadData();
-    setInterval(loadData, 5000); // تحديث كل 30 ثانية
+    setInterval(loadData,10000); // تحديث كل 30 ثانية
