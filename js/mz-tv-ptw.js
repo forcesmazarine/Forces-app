@@ -30,4 +30,4 @@ async function loadData() {
 }
 
 loadData();
-setInterval(loadData, 10000); // تحديث كل 10 ثواني
+setInterval(loadData, 2500); 
