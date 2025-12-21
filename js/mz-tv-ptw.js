@@ -1,4 +1,4 @@
-const apiUrl = "https://script.google.com/macros/s/AKfycbx51ejIg4-XwG-lBovDu-wOQhQ0TrVQg5pd3UmDfzLf4b7q7X8zDPj8EFOszYAzrcvU/exec";
+const apiUrl = "https://script.google.com/macros/s/AKfycbz-M9pIGtoNPkY60NGTxpoccW9hGvf-kNOnhuALYNieIPy-t_wtrGep328PMfCgee-C/exec";
 
 async function loadData() {
   const res = await fetch(apiUrl);
