@@ -1,15 +1,32 @@
-fetch("https://script.google.com/macros/s/AKfycbz7vCXjgUKDidRtn6WNyvg1MaBme21szgiqQCqICg9caRXyQ2Dshcg7YQPOnQumIWaf/exec")
-  .then(res => res.json())
-  .then(data => {
-    const tbody = document.getElementById("units");
+const sheetUrl =
+  "https://docs.google.com/spreadsheets/d/e/2PACX-1vQrllDJVT8xn4IQYLLPpoPefr-rDCVbaFpbH4W-P7VCPXX4GZPnFEnxTZkcDkFL9b30bO1pwFErT_7E/pub?gid=751192069&single=true&output=csv";
 
-    data.forEach(item => {
-      const tr = document.createElement("tr");
-      tr.innerHTML = `
-        <td>${item.unitNumber}</td>
-        <td>${item.delegateName}</td>
-      `;
-      tbody.appendChild(tr);
-    });
-  })
-  .catch(err => console.error(err));
+async function loadUnits() {
+  const response = await fetch(sheetUrl);
+  const data = await response.text();
+
+  const rows = data.split("\n").slice(1); // تجاهل الهيدر
+  const tbody = document.querySelector("#units tbody");
+  tbody.innerHTML = "";
+
+  rows.forEach(row => {
+    if (!row.trim()) return;
+
+    // مهم: التعامل مع الفواصل داخل النص
+    const cols = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+
+    const unitNumber = cols[0]?.replace(/"/g, "");
+    const delegateName = cols[1]?.replace(/"/g, "");
+
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${unitNumber}</td>
+      <td>${delegateName}</td>
+    `;
+
+    tbody.appendChild(tr);
+  });
+}
+
+loadUnits();
+setInterval(loadUnits, 30 * 60 * 1000); // تحديث كل 30 دقيقة

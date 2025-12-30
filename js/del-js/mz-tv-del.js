@@ -1,33 +1,32 @@
-const apiUrl = "https://script.google.com/macros/s/AKfycbz-M9pIGtoNPkY60NGTxpoccW9hGvf-kNOnhuALYNieIPy-t_wtrGep328PMfCgee-C/exec";
+const sheetUrl =
+  "https://docs.google.com/spreadsheets/d/e/2PACX-1vQrllDJVT8xn4IQYLLPpoPefr-rDCVbaFpbH4W-P7VCPXX4GZPnFEnxTZkcDkFL9b30bO1pwFErT_7E/pub?gid=489075203&single=true&output=csv";
 
-async function loadData() {
-  const res = await fetch(apiUrl);
-  const data = await res.json();
+async function loadUnits() {
+  const response = await fetch(sheetUrl);
+  const data = await response.text();
 
-  const tbody = document.querySelector("#permits tbody");
+  const rows = data.split("\n").slice(1); // تجاهل الهيدر
+  const tbody = document.querySelector("#units tbody");
   tbody.innerHTML = "";
 
-  const today = new Date();
+  rows.forEach(row => {
+    if (!row.trim()) return;
 
-  data.forEach(item => {
+    // مهم: التعامل مع الفواصل داخل النص
+    const cols = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+
+    const unitNumber = cols[0]?.replace(/"/g, "");
+    const delegateName = cols[1]?.replace(/"/g, "");
+
     const tr = document.createElement("tr");
-
-    // معالجة التاريخ
-    const endDate = new Date(item.end);
-    if (endDate < today) {
-      tr.classList.add("expired");
-    }
-
     tr.innerHTML = `
-      <td>${item.unit}</td>
-      <td>${item.desc}</td>
-      <td>${item.start}</td>
-      <td>${item.end}</td>
+      <td>${unitNumber}</td>
+      <td>${delegateName}</td>
     `;
 
     tbody.appendChild(tr);
   });
 }
 
-loadData();
-setInterval(loadData,60000); 
+loadUnits();
+setInterval(loadUnits, 30 * 60 * 1000); // تحديث كل 30 دقيقة
